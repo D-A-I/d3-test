@@ -57,3 +57,7 @@ typings/
 # dotenv environment variables file
 .env
 
+# src配下のjsファイルや、bundleファイル、mapファイルは不要
+src/*.js
+dist/
+*.js.map
