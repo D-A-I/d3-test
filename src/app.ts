@@ -18,7 +18,7 @@ $(() => {
     let barData = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25];
 
     // svgを定義する
-    let svgBar = d3.select('#bar-chart') // 型の指定の仕方がわからない｡｡追って調査
+    let svgBar = d3.select('#bar-chart1') // 型の指定の仕方がわからない｡｡追って調査
         .attr('width', SVG_WIDTH).attr('height', SVG_HEIGHT); // svg全体のサイズを定義
 
     // 棒グラフを描画する
@@ -61,7 +61,7 @@ $(() => {
     let xScale = d3.scaleLinear()
         .domain(Enumerable.from(scatterData).select((x) => x[0]).toArray())
         /* ☆重要☆ padding分、左右を狭める（右側は数値を表示する分、より大きめにとる） */
-        .range([SCTTR_PADDING, SVG_WIDTH - SCTTR_PADDING * 2]);
+        .range([SCTTR_PADDING, SVG_WIDTH - SCTTR_PADDING * 2.5]);
 
     // y軸用スケール（入力値と出力サイズのマッピング関数）を定義する
     let yScale = d3.scaleLinear()
@@ -76,7 +76,7 @@ $(() => {
         .range([2, 5]);
 
     // svgを定義する
-    let svgSct = d3.select('#scatter-plot')
+    let svgSct = d3.select('#scatter-plot1')
         .attr('width', SVG_WIDTH).attr('height', SVG_HEIGHT); // svg全体のサイズを定義
 
     // 散布図を描画する
@@ -93,4 +93,11 @@ $(() => {
         .attr('x', (d) => xScale(d[0]))
         .attr('y', (d) => yScale(d[1]))
         .text((d) => d[0] + ', ' + d[1]);
+
+    /**
+     * 3. 以下軸付きの散布図を作成する
+     */
+    
+    // bottomの軸を定義する
+    var xAxis = d3.axisBottom(xScale);
 });
